@@ -1,11 +1,20 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
+import apiGithub from './services/apiGithub';
 
 function App() {
+
+  useEffect(()=> {
+    apiGithub.get('users/gabrielaabergamo')
+      .then(response => response.data)
+      .then(resposta => console.log(resposta))
+      .catch(erro => console.log(erro))
+  }, [])
+
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
